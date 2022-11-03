@@ -44,5 +44,52 @@ class PrimitivesTest {
 		
 		return number % 10;
 	}
+	
+	@Test
+	@Disabled
+	void getBitValueTest() {
+		long num = 0x3ab7f5; //001110101011011111_1_10101
+		assertEquals(1, BitOperations.getBitValue(num, 5));
+		assertEquals(0, BitOperations.getBitValue(num, 11));
+		assertEquals(0, BitOperations.getBitValue(num, 1));
+		assertEquals(1, BitOperations.getBitValue(num, 2));
+		assertEquals(-1, BitOperations.getBitValue(num, 100));
+		assertEquals(-1, BitOperations.getBitValue(num, -2));
+		
+		
+	}
+	@Test
+	@Disabled
+	void setBitValueTest() {
+		long number = 0x3ab7f5; //0011_1010_1011_0111_1111_0101
+		assertEquals(0x3ab7d5, BitOperations.setBitValue(number, 5, false));
+		assertEquals(0x3ab7f5, BitOperations.setBitValue(number, 5, true));
+		assertEquals(0x2ab7f5, BitOperations.setBitValue(number, 20, false));
+		assertEquals(0x1ab7f5, BitOperations.setBitValue(number, 21, false));
+	}
+	@Test
+	@Disabled
+	void revertBitValueTest() {
+		long number = 0x3ab7f5; //001110101011011111_1_10101
+		assertEquals(0x3ab7d5, BitOperations.invertBitValue(number, 5));
+		assertEquals(0x3ab7f4, BitOperations.invertBitValue(number, 0));
+		number = -1;
+		
+		assertEquals(1, BitOperations.getBitValue(number, 63));
+		number = BitOperations.invertBitValue(number, 63);
+		assertEquals(0, BitOperations.getBitValue(number, 63));
+	}
+	@Test
+	void digitsNumberTest() {
+		//TODO
+	}
+	@Test
+	void leadingZerosTest() {
+		//TODO
+	}
+	 @Test
+	 void isHappyNumberTest() {
+		 //TODO
+	 }
 
 }
