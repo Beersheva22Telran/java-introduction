@@ -88,8 +88,24 @@ class PrimitivesTest {
 		//TODO
 	}
 	 @Test
+	 @Disabled
 	 void isHappyNumberTest() {
-		 //TODO
+		 int expectedTrue = 123321;
+		 int expectedFalse = 123467;
+		 assertTrue( Numbers.isHappyNumber(expectedTrue));
+		 assertFalse( Numbers.isHappyNumber(expectedFalse));
+	 }
+	 @Test
+	 @Disabled
+	 void getDigitsTest() {
+		 int expected[] = {1, 2, 3, 4};
+		 assertArrayEquals(expected, Numbers.getDigits(1234));
+	 }
+	 @Test
+	 void getNumberFromDigitsTest() {
+		 int expectedNumber = 1234;
+		
+		 assertEquals(expectedNumber, Numbers.getNumberFromDigits(new int[]{1, 2, 3, 4}));
 	 }
 
 }
