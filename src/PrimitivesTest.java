@@ -102,10 +102,21 @@ class PrimitivesTest {
 		 assertArrayEquals(expected, Numbers.getDigits(1234));
 	 }
 	 @Test
+	 @Disabled
 	 void getNumberFromDigitsTest() {
 		 int expectedNumber = 1234;
 		
 		 assertEquals(expectedNumber, Numbers.getNumberFromDigits(new int[]{1, 2, 3, 4}));
+	 }
+	 @Test
+	 void bibarySearchTest() {
+		 int ar[] = {1,1,1,2,2,2,2,2,2,2,2,2,2,4,20,40};
+		 assertEquals(-14, MyArrays.binarySearch(ar, 3));
+		 assertEquals(3, MyArrays.binarySearch(ar, 2));
+		 assertEquals(-1, MyArrays.binarySearch(ar, 0));
+		 assertEquals(0, MyArrays.binarySearch(ar, 1));
+		 assertEquals(-16, MyArrays.binarySearch(ar, 25));
+		 assertEquals(-17, MyArrays.binarySearch(ar, 45));
 	 }
 
 }

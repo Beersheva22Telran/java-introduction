@@ -67,15 +67,23 @@ public class MyArrays {
 		int left = 0;
 		int right = arraySorted.length - 1;
 		int middle = right / 2;
-		while(left <= right && arraySorted[middle] != number) {
-			if (number < arraySorted[middle]) {
+		while (left <= right && arraySorted[left] != number) {
+			if (number <= arraySorted[middle]) {
 				right = middle - 1;
 			} else {
 				left = middle + 1;
 			}
-			middle = (left + right) / 2;
+			middle = (right + left) / 2;
 		}
-		return left > right ? -1 : middle;
+		int res;
+		
+		
+			if (left < arraySorted.length && arraySorted[left] == number) {
+				res = left;
+			} else {
+				res = -left - 1;
+			}
+		return res;
 	}
 	
 }
