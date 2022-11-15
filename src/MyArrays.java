@@ -85,5 +85,73 @@ public class MyArrays {
 			}
 		return res;
 	}
+public static boolean isOneSwapForSorted(int array[]) {
+		
+		//The method returns true if an given array is not sorted
+		//but to do it sorted there should be done only one swap of any numbers (not mandatory 
+		//that the being swapped numbers placed one after other)
+		
+		int index1 = -1;
+		int index2 = -1;
+		int length = array.length - 1;
+		int equaledCount = 0;
+		boolean res = true;
+		int i = 0;
+		while (i < length && res) {
+			if (array[i] > array[i + 1]) {
+				if (index1 == -1) {
+					index1 = i - equaledCount;
+					if (equaledCount > 0) {
+						index2 = i + 1;
+					}
+				} else if(index2 != -1) {
+					res = false;
+				} else {
+					index2 = i + 1;
+				}
+			} else if (array[i] == array[i + 1]) {
+				equaledCount++;
+			} else if (array[i] < array[i + 1]) {
+				if (equaledCount != 0 && index1 != -1 && index2 == -1 && array[i] < array[index1]) {
+					index2 = i;
+				}
+				equaledCount = 0;
+			}
+			i++;
+		}
+		return index1 != -1 && res ? checkIndexes(array, index1, index2) : false;
+		
+}
+
+	private static boolean checkIndexes(int[] array, int index1, int index2) {
+	
+		return index2 == -1 ? checkOneIndex(array, index1) : checkTwoIndexes(array, index1, index2);
+	}
+
+	private static boolean checkTwoIndexes(int[] array, int index1, int index2) {
+		
+		return (index2 == array.length - 1 || array[index1] <= array[index2 + 1]) && 
+				array[index2] <= array[index1 + 1] && (index1 == 0 || array[index2] >= array[index1 - 1]);
+	}
+
+	private static boolean checkOneIndex(int[] array, int index) {
+		
+		return (index == array.length - 2 || array[index] <= array[index + 2]) && 
+				(index == 0 || array[index + 1] >= array[index - 1])
+				;
+	}
+	public void bubbleSort(int [] array) {
+		int length = array.length;
+		boolean unsorted = false;
+		do {
+			length--;
+			unsorted = moveGreaterRight(array, length);
+		}while(unsorted);
+	}
+	private boolean moveGreaterRight(int[] array, int length) {
+		//for()
+		return false;
+	}
+
 	
 }
