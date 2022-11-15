@@ -125,6 +125,7 @@ class PrimitivesTest {
 		assertEquals(-14, MyArrays.binarySearch(ar, 3));
 		assertEquals(3, MyArrays.binarySearch(ar, 2));
 		assertEquals(-1, MyArrays.binarySearch(ar, 0));
+		assertEquals(13, MyArrays.binarySearch(ar, 4));
 		assertEquals(0, MyArrays.binarySearch(ar, 1));
 		assertEquals(-16, MyArrays.binarySearch(ar, 25));
 		assertEquals(-17, MyArrays.binarySearch(ar, 45));
