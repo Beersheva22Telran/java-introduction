@@ -85,15 +85,7 @@ class PrimitivesTest {
 		assertEquals(0, BitOperations.getBitValue(number, 63));
 	}
 
-	@Test
-	void digitsNumberTest() {
-		// TODO
-	}
-
-	@Test
-	void leadingZerosTest() {
-		// TODO
-	}
+	
 
 	@Test
 	@Disabled
@@ -120,6 +112,7 @@ class PrimitivesTest {
 	}
 
 	@Test
+	@Disabled
 	void bibarySearchTest() {
 		int ar[] = { 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 20, 40 };
 		assertEquals(-14, MyArrays.binarySearch(ar, 3));
@@ -150,7 +143,7 @@ class PrimitivesTest {
 	}
 
 	@Test
-
+@Disabled
 	void isOneSwapTestTrue() {
 		int ar1[] = { 10, 2, 3, 4, 1 };
 		int ar2[] = { 1, 2, 4, 3, 5, 10 };
@@ -171,5 +164,17 @@ class PrimitivesTest {
 		assertTrue(MyArrays.isOneSwapForSorted(ar8));
 		assertTrue(MyArrays.isOneSwapForSorted(ar9));
 	}
+	@Test
+	void isSum2Test() {
+		short ar[] = {1, 2, 5, 4, 5, 100, 9, 0x7fff, 1};
+		assertTrue(MyArrays.isSum2(ar, (short)101));
+		assertTrue(MyArrays.isSum2(ar, (short)11));
+		assertTrue(MyArrays.isSum2(ar, (short)14));
+		assertFalse(MyArrays.isSum2(ar, (short)8));
+		assertFalse(MyArrays.isSum2(ar, (short)2000));
+		assertTrue(MyArrays.isSum2(ar, (short)(0x7fff + 1)));
+		
+	}
+	
 
 }
