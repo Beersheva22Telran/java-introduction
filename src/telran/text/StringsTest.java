@@ -66,6 +66,7 @@ String word="yellow";
 				new String[] {"a", "c"}));
 		assertTrue(Double.isNaN(computeArithmenticExpression("a + 2 + c * 2 + d23", new double[] {2, 1},
 				new String[] {"a", "c"})));
+		assertEquals(20, computeArithmenticExpression("$ + 2 * 10", null, new String[] {"$"}));
 	}
 	
 	

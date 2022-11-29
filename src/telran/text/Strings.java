@@ -1,5 +1,7 @@
 package telran.text;
 
+import java.util.Arrays;
+
 public class Strings {
 	/**
 	 * 
@@ -101,8 +103,11 @@ public class Strings {
 	}
 
 	private static String operand() {
-		// FIXME
-		// adds possibility of using Java variables
+		String numberExp = numberExp();
+		String variableExp = javaNameExp();
+		return String.format("(\\(*(%s|%s)\\)*)", numberExp, variableExp);
+	}
+	private static String numberExp() {
 		return "(\\d+\\.?\\d*|\\.\\d+)";
 	}
 
@@ -127,6 +132,8 @@ public class Strings {
 		// 10 (* 2)
 		// 10 * 2(())
 		Double res = Double.NaN;
+		names = getUpdatedNames(names);
+		values = getUpdatedValues(values, names);
 		if (isArithmeticExpression(expression) && checkBraces(expression)) {
 			expression = expression.replaceAll("[\\s()]+", "");
 			String operands[] = expression.split(operator());
@@ -144,6 +151,21 @@ public class Strings {
 		return res;
 	}
 
+	private static double[] getUpdatedValues(double[] values, String[] names) {
+		if (values == null) {
+			values = new double[0];
+		}
+		if (values.length != names.length) {
+			values = Arrays.copyOf(values,names.length);
+		}
+		return values;
+	}
+
+	private static String[] getUpdatedNames(String[] names) {
+		
+		return names == null ? new String[0] : names;
+	}
+
 	private static Double computeOperation(Double operand1, double operand2, String operator) {
 		Double res = Double.NaN;
 		if(!Double.isNaN(operand2)) {
@@ -159,13 +181,34 @@ public class Strings {
 	}
 
 	private static Double getOperandValue(String operand, double[] values, String[] names) {
-		// FIXME for possible variable names
-		return Double.parseDouble(operand);
+		Double res = Double.NaN;
+		int a;
+		if(operand.matches(numberExp())) {
+			res = Double.valueOf(operand);
+		} else {
+			int index = Arrays.binarySearch(names, operand);
+			if (index > -1) {
+				res = values[index];
+			}
+		}
+		return res;
 	}
 
 	public static boolean checkBraces(String expression) {
-		// TODO
-		return true;
+		int count = 0;
+		int index = 0;
+		int length = expression.length();
+		while(index < length && count > -1) {
+			char symb = expression.charAt(index);
+			if (symb == '(') {
+				count++;
+			} else if (symb == ')') {
+				count--;
+			}
+			index++;
+		}
+		
+		return count == 0;
 	}
 
 }
