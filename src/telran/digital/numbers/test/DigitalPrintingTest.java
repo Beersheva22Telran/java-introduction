@@ -21,12 +21,23 @@ public class DigitalPrintingTest {
 		displayStrings(twoVerticalLines(30, 10, 5));
 	}
 	@Test
+	@Disabled
 	void zeroTest() {
 		displayStrings(zero(30, 5, 4));
 	}
 	@Test
+	@Disabled
 	void oneTest() {
 		displayStrings(one(30, 5, 4));
+	}
+	@Test
+	@Disabled
+	void eightTest() {
+		displayStrings(nine(30, 5, 6));
+	}
+	@Test
+void digitalPrintingTest() {
+		displayDigitalNumber(1234567890, 10, 5, 6);
 	}
 	
 	
